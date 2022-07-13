@@ -11,6 +11,10 @@ from django.core.mail import send_mail
 from core.authentication import JWTAuthentication, create_acces_token, create_refresh_token, decode_refresh_token
 from .serializers import UserSerializer
 from .models import Reset, User, UserToken
+from .models import *
+from rest_framework import generics
+from .serializers import *
+
 
 class RegisterAPIView(APIView):
     def post(self, request):
@@ -142,3 +146,48 @@ class ResetAPIView(APIView):
         return Response({
             'message': 'Success'
         })
+
+class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+    # def get(self,request,*args,**kwargs):
+    #     user = request.user
+    #     profile=Profile.objects.get(user=user.id)
+
+
+class ProfileList(generics.ListCreateAPIView):
+    queryset = Profile.objects.all()
+    serializer_class =ProfileSerializer
+
+class FeedsList(generics.ListCreateAPIView):
+    queryset = Feeds.objects.all()
+    serializer_class =FeedsSerializer
+
+class FeedsDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Feeds.objects.all()
+    serializer_class = FeedsSerializer
+
+class MerchandiseList(generics.ListCreateAPIView):
+    queryset = Merchandise.objects.all()
+    serializer_class =MerchandiseSerializer
+
+class MerchandiseDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Merchandise.objects.all()
+    serializer_class = MerchandiseSerializer
+
+class CategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class =CategorySerializer
+
+class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+class CommentList(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class =CommentSerializer
+
+class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
