@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
-from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'django-insecure-nb0r4mtvj=@ojk9nld_w@)y+rxio48on_k=84cow$(hekx05^+'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'core',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -113,6 +115,8 @@ REST_FRAMEWORK = {
 }
 
 
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -127,8 +131,10 @@ USE_TZ = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-MEDIA_ROOT = BASE_DIR / 'static/images'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 STATIC_URL = 'static/'
 
@@ -144,3 +150,13 @@ CORS_ALLOW_CREDENTIALS = True
 
 EMAIL_HOST = '0.0.0.0'
 EMAIL_PORT = 1025
+
+
+
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': "dpkrfq3vr",
+    'API_KEY': "942357365678392",
+    'API_SECRET': "-878Puk1KQ33Q4pva2Id0D6xUCo",
+}
